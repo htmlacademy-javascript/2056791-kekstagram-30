@@ -32,11 +32,11 @@ isPadindrom('Лёша на полке клопа нашёл ');
 
 function numberRes(str){
 
-  const succes = '' + str;
-  const reserch = succes.replaceAll(' ', '').split('');
+  const succes =  str;
+  const reserch = String(succes).replaceAll(' ', '').split('');
   let number = '';
   for(let i = 0; i < reserch.length; i++){
-    if(reserch[i] === +reserch[i]){
+    if(reserch[i] == +reserch[i]){
       number += reserch[i];
     }
   }
@@ -49,7 +49,6 @@ numberRes('ECMAScript 2022');
 numberRes('1 кефир, 0.5 батона');
 numberRes('агент 007');
 numberRes(' я томат');
-
 numberRes(2023);
 numberRes(-1);
 numberRes(1.5);
