@@ -1,11 +1,12 @@
 function lengthCheck(str, length){
-  const SUCCES = `Проверка прошла: ${str}, символов ${length}`;
-  const NOTSUCCES = `Проверка не прошла ${str}, строка длиннее чем указано ${length}`;
+  const SUCCES = true;
+  const NOTSUCCES = false;
 
-  let accesString = (str.length < length || str.length == length) ? SUCCES : NOTSUCCES;
+  const accesString = (str.length < length || str.length === length) ? SUCCES : NOTSUCCES;
   return accesString;
 }
-
+ //`Проверка прошла: ${str}, символов ${length}`
+ //`Проверка не прошла ${str}, строка длиннее чем указано ${length}`
 console.log(lengthCheck('проверяемая строка', 20));
 
 console.log(lengthCheck('проверяемая строка', 18));
@@ -14,9 +15,9 @@ console.log(lengthCheck('проверяемая строка', 10));
 
 // Палиндром
 function isPadindrom(str){
-  let cleanedStr = str.toLowerCase().replaceAll(" ", "");
+  const cleanedStr = str.toLowerCase().replaceAll(' ', '');
 
-  let reversedStr = cleanedStr.split("").reverse().join("");
+  const reversedStr = cleanedStr.split('').reverse().join('');
 
   let result = (cleanedStr == reversedStr) ? true : false;
 
