@@ -19,7 +19,7 @@ function isPadindrom(str){
 
   const reversedStr = cleanedStr.split('').reverse().join('');
 
-  const result = (cleanedStr === reversedStr) ? true : false;
+  const result = cleanedStr === reversedStr;
 
   return result;
 }
@@ -32,16 +32,16 @@ isPadindrom('Лёша на полке клопа нашёл ');
 
 function numberRes(str){
 
-  let succes = "" + str
-  let reserch = succes.replaceAll(' ', '').split("");
+  const succes = '' + str;
+  const reserch = succes.replaceAll(' ', '').split('');
   let number = '';
   for(let i = 0; i < reserch.length; i++){
-    if(reserch[i] == +reserch[i]){
+    if(reserch[i] === +reserch[i]){
       number += reserch[i];
     }
   }
 
-  return parseInt(number);
+  return parseInt(number, 10);
 }
 
 numberRes('2023 год');
