@@ -115,15 +115,15 @@ const getRandomInteger = (a, b) => {
 const createIdComments = noRepeat(ID_COUNT.min, ID_COUNT.max);
 const createIdArray = noRepeat(1, ARRAY_COUNT);
 const createUrlObject = noRepeat(1, ARRAY_COUNT);
-const createDescriptionObject = getRandomInteger(0, DESKRIPTON_PHOTO.length - 1);
-const createLikesObject = getRandomInteger(LIKES_COUNT.MIN, LIKES_COUNT.MAX);
+const createDescriptionObject = () => getRandomInteger(0, DESKRIPTON_PHOTO.length - 1);
+const createLikesObject = () => getRandomInteger(LIKES_COUNT.MIN, LIKES_COUNT.MAX);
 
 
 const createArray = () => ({
   id: createIdArray(),
   url: `photos/${createUrlObject()}.jpg`,
-  description: DESKRIPTON_PHOTO[createDescriptionObject],
-  likes: createLikesObject,
+  description: DESKRIPTON_PHOTO[createDescriptionObject()],
+  likes: createLikesObject(),
   comments: newComment(getRandomInteger(COMMENTS_COUNT.min, COMMENTS_COUNT.max)),
 });
 
