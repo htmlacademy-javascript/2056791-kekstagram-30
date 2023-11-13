@@ -1,4 +1,4 @@
-const DESCRIPTION_PHOTO = [
+const DESKRIPTON_PHOTO = [
   'По синему морю, к зеленой земле',
   'Плыву я на белом своем корабле.',
   'На белом своем корабле,',
@@ -29,7 +29,7 @@ const DESCRIPTION_PHOTO = [
   'Чтоб были потеряны дети!',
 ];
 
-const COMMENTS_MESSAGE = [
+const COAT_COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофиссионально.',
@@ -38,7 +38,7 @@ const COMMENTS_MESSAGE = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-const NAMES = [
+const NAME = [
   'Лёша',
   'Алексей',
   'Иван',
@@ -52,77 +52,81 @@ const NAMES = [
   'Джинс'
 ];
 
-let commentIDCount = 0;
+const ARRAY_COUNT = 25;
 
-const GENERATED_OBJECT = 25;
+const ID_COUNT = {
+  min: 1,
+  max: 500
+};
 
-const GENERATED_LIKES = {
-  MIX: 15,
+const AVATAR_COUNT = {
+  min: 1,
+  max: 6
+};
+
+const LIKES_COUNT = {
+  MIN: 15,
   MAX: 200
 };
 
-const GENERATED_COMMENTS = {
-  MIN: 0,
-  MAX: 30
+const COMMENTS_COUNT = {
+  min: 0,
+  max: 30,
 };
 
-const GENERATED_AVATAR_NUMBER = {
-  MIN: 1,
-  MAX: 6
+const noRepeat = (min, max) => {
+  const arrayOfNumber = [];
+
+  return function(){
+    let valueCurrent = getRandomInteger(min, max);
+
+    while(arrayOfNumber.includes(valueCurrent)){
+      valueCurrent = getRandomInteger(min, max);
+    }
+    arrayOfNumber.push(valueCurrent);
+    return valueCurrent;
+  };
+
 };
 
-const getRandomNumber = (a, b) => {
+const newComment = (value) =>{
+  const ArrayComments = [];
+
+  while(value){
+    const ArrayComment = {
+      id: createIdComments(),
+      avatar: `img/avatar-${getRandomInteger(AVATAR_COUNT.min, AVATAR_COUNT.max)}.svg`,
+      message: COAT_COMMENTS[getRandomInteger(0, COAT_COMMENTS.length - 1)],
+      name: NAME[getRandomInteger(0, NAME.length - 1)],
+    };
+    value--;
+
+    ArrayComments.push(ArrayComment);
+  }
+  return ArrayComments;
+};
+
+const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
+const createIdComments = noRepeat(ID_COUNT.min, ID_COUNT.max);
+const createIdArray = noRepeat(1, ARRAY_COUNT);
+const createUrlObject = noRepeat(1, ARRAY_COUNT);
+const createDescriptionObject = getRandomInteger(0, DESKRIPTON_PHOTO.length - 1);
+const createLikesObject = getRandomInteger(LIKES_COUNT.MIN, LIKES_COUNT.MAX);
 
-const createRandomIdFromRangeGenerator = (min, max) => {
-  const previousValues = [];
 
-  return function () {
-    let currentValue = getRandomNumber(min, max);
-
-    while (previousValues.includes(currentValue)){
-      currentValue = getRandomNumber(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-};
-
-const getComments = (quanity) => {
-  const comments = [];
-  let count = quanity;
-
-  while (count){
-    const comment = {
-      id: commentIDCount++,
-      avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
-      message: COMMENTS_MESSAGE[getRandomNumber(0, COMMENTS_MESSAGE.length - 1)],
-      name: NAMES[getRandomNumber(0, NAMES.length - 1)],
-    };
-
-    count--;
-
-    comments.push(comment);
-  }
-  return comments;
-};
-
-const generatePicturesID = createRandomIdFromRangeGenerator(1, GENERATED_OBJECT );
-const generateUrlID = createRandomIdFromRangeGenerator(1, GENERATED_OBJECT);
-const generateDescriptionID = createRandomIdFromRangeGenerator(1, DESCRIPTION_PHOTO.length - 1);
-
-const createPicture = () => ({
-  id: generatePicturesID(),
-  url: `photos/${generateUrlID()}.jpg`,
-  description: DESCRIPTION_PHOTO[generateDescriptionID()],
-  likes: getRandomNumber(GENERATED_LIKES.MIX, GENERATED_LIKES.MAX),
-  comments: getComments(getRandomNumber(GENERATED_COMMENTS.MIN, GENERATED_COMMENTS.MAX)),
+const createArray = () => ({
+  id: createIdArray(),
+  url: `photos/${createUrlObject()}.jpg`,
+  description: DESKRIPTON_PHOTO[createDescriptionObject],
+  likes: createLikesObject,
+  comments: newComment(getRandomInteger(COMMENTS_COUNT.min, COMMENTS_COUNT.max)),
 });
 
-const getPictures = () => pictures = Array.from({length: GENERATED_OBJECT}, createPicture);
+const generatedObjects = Array.from({length: ARRAY_COUNT}, createArray);
 
-console.log(getPictures());
+console.log(generatedObjects);
