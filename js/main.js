@@ -1,5 +1,6 @@
-import {generatedObjects} from './data.js';
+import {generatedPictures} from './gallery.js';
 
 
 
-console.log(generatedObjects());
+console.log(generatedPictures());
+
