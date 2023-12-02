@@ -1,8 +1,8 @@
-import {getGeneratObjects} from './data.js';
+import {generatedObjects} from './data.js';
 
 const containerPictures = document.querySelector('.pictures');
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
-const generatePictures = getGeneratObjects();
+const generatePictures = generatedObjects();
 const fragmentPictures = document.createDocumentFragment();
 
 generatePictures.forEach(({url, description, likes, comments}) => {

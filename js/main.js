@@ -1,5 +1,6 @@
-import {generatedObjects} from './data.js';
+import {appendPictures} from './thumbnail.js';
 
 
 
-console.log(generatedObjects());
+appendPictures();
+console.log(appendPictures());
