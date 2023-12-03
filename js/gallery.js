@@ -16,7 +16,8 @@ const generatedPictures = () => {
     console.log(picturesElement);
     listFragment.appendChild(picturesElement);
   });
+  containerPicture.append(listFragment);
 };
-containerPicture.append(listFragment);
+
 
 export {generatedPictures};
