@@ -20,4 +20,33 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-export {noRepeat, getRandomInteger};
+const getRandomArrayElement = (items) => items[getRandomInteger(0, items.length - 1)];
+
+const createIdGenerator = () => {
+  let lastGeneratedId = 0;
+  return () => {
+    lastGeneratedId += 1;
+    return lastGeneratedId;
+  }
+}
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+
+const isTargetClick = (evt, select) => evt.target.closest(select);
+
+const generateCommentId = createIdGenerator();
+const generatePhotoId = createIdGenerator();
+const generateDataId = createIdGenerator();
+
+export {
+  noRepeat,
+  getRandomInteger,
+  isEscapeKey,
+  isTargetClick,
+  getRandomArrayElement,
+  createIdGenerator,
+  generateCommentId,
+  generatePhotoId,
+  generateDataId
+};

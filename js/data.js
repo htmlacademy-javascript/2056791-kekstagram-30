@@ -1,4 +1,5 @@
-import {getRandomInteger, noRepeat} from './util.js';
+import {getRandomInteger, noRepeat,}
+ from './util.js';
 
 const DESKRIPTON_PHOTO = [
   'По синему морю, к зеленой земле',
@@ -111,6 +112,6 @@ const createArray = () => ({
   comments: newComment(getRandomInteger(COMMENTS_COUNT.min, COMMENTS_COUNT.max)),
 });
 
-const generatedObjects = () => Array.from({length: ARRAY_COUNT}, createArray);
+const generatedObjects = () => Array.from({length: ARRAY_COUNT}, (createArray));
 
 export {generatedObjects};
